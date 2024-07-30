@@ -17,6 +17,7 @@ $incomingFields = $request->validate([
 ]);
 if(auth()->attempt(['name'=>$incomingFields['loginName'],'password'=>$incomingFields['loginPassword']])){
     $request->session()->regenerate();
+   
 }
 return redirect('/');
 }
