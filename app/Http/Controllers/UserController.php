@@ -9,7 +9,24 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    // this is for validation purposes//
+// login function//
+public function login(Request $request){
+$incomingFields = $request->validate([
+    'loginName'=>'required',
+    'loginPassword'=>'required',
+]);
+if(auth()->attempt(['name'=>$incomingFields['loginName'],'password'=>$incomingFields['loginPassword']])){
+    $request->session()->regenerate();
+}
+return redirect('/');
+}
+
+// logout_function// 
+public function logout(){
+auth()->logout();
+return redirect('/');
+}
+  // this is for validation purposes//
     public function register(Request $request){
         $incomingFields= $request->validate([
             'name' => ['required','min:3','max:10',Rule::unique('users','name')],
