@@ -22,6 +22,15 @@
             <button>Save your post</button>
         </form>
     </div>
+    <div style="border: 3px solid black">
+        <h2>All Posts</h2>
+        @foreach($posts as $post)
+        <div style="background-color: gray; padding:10px;margin:10px">
+            <h3>{{$post['title']}}</h3>
+            {{$post['body']}}
+        </div>
+        @endforeach 
+    </div>
 @else
     <div style="border: 3px solid black">
         <h2>Register</h2>
